@@ -1,0 +1,42 @@
+language: rust
+rust:
+- stable
+- beta
+- nightly
+sudo: false
+os:
+- linux
+- osx
+cache:
+  directories:
+  - "$HOME/.cargo"
+  - target
+matrix:
+  fast_finish: true
+  allow_failures:
+  - rust: nightly
+env:
+  matrix:
+  - CARGO_DEFAULT_FEATURES=true
+  - CARGO_DEFAULT_FEATURES=false
+  global:
+  - secure: VB30yDzJEUDpvxn1oFHhspDe267EDNUdGYaG6MFbp6bbQfO2s9joWdVGp1PGMy65Km9ny5776fTZgv/q6/9ZTH5rBh4SIUF5SCGND+RSihR4AuwzO0nJfgZHdOChujJjkwMh7tfyjX2RltDJuzVPPWk2DUr1i5Za75LK4zf/tf5mEqDDzSJ5GdzTzBsV9fDUIWr6yMfStKeMSnelRVBVQa7WEdS8wj6mNnmXfB8fQG7YwwpsvCnFlWZdGLIUuEyOdYqPWsQI3qh5ldE9h/Wt/rrm31ZLKWLh69nan8AIJp4xEu4rq49AUaTJrOHMWhMojBt1aoQZNpjwh+d8ELFi15gRm2Kb8K4viTgEk1Vn01Eq5t9cf7Aygi2TG/qkgT+Nd7XH7dhWW75tf7mF/XgA1Eid+Nl/9fgTwrhs1C4duPJyz5Rz0rJTFCIsjUT+6UFve6A+FboSf8TziQ8Zv7Ss2/zEPsSOlyGdgDijoLrn0j2piZPwC14p52ah/t38fhjzDi1L2qDpTckQ2leiHy+oagRP54pBHxRkKV7GejF3aHLg+fjuGVhUthycBwdKyo1APZqm9abqZwv713Bx+g50OU3Vhosq4LXm2LYv4yHAMTX35t/BeiK2j7/7w5On9NKo0zdwXrtRmHJam0aEIDEeFdyyyOiTwqtvkfe+6SGYCzE=
+  - secure: eEFE41aQsUnXN9iB9BG5liKiNXyJMcguccARZXWMI5GvXaUfUBzAp6ZH5ww4ZKYamUs73xfa8jnfS0BRfsXWO/5jQyZ0sYTKZVPjZot2cp+3ECtiZ9Z+QOHyVWfrGMjJvrQdrO/pT7hO8sOFy1LoD1wRqzXuz+43VPL+2ARgp01dzz2bOiAe2Csv7PiUtedmRGPwHAOF9Bf+JgfHWoaAhOO2CzYRI3FPpMWyI/M0j34j1HMFUdbLCeuMJm+Cu2MC18WKpHwcB8xZP0Fj/2tbFLQ2oaTjnWLNxWVxx1QWRKir3TZjqckfT7zJjfra1qGRPk6JLqfCZM3dU3VM3BFv4zW1Qv/oW5/npql56XmXGYLNkD9m/LyRZ0hmOkcBjzoR102qac9E4dHAut2QOwf2HKKCCnHGNlt3gi52wzcYeaWvdVNgvC74PyJAAHDfMumvw4TCZxRdE4NSnzdl3ZXIpmeIU05vltFAKuZ/zehYaZRFQFNqVpUKDmIJaOP0CtfluN/nNPSY8eBsoHitpddJW5gD0zonI9j+lrIdVwUFba5ONzsvnOWKt/d6RO/0ReXfgt7EWZ7NsC552cDJnbXbpHNk535W42qFfhIs49Fk3+znL5sg/zOsAm8If5YVbT/g4bPm1vhBceytnnPU1tFhthG06zBosPJV2H/nUB3LrsU=
+before_install:
+- curl -L https://github.com/arcnmx/ci/archive/0.1.tar.gz | tar -xzC $HOME && . $HOME/ci-0.1/src
+script:
+- cargo test
+- cargo build
+deploy:
+  provider: script
+  script: 'true'
+  on:
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_RUST_VERSION = stable"
+before_deploy:
+- cargo doc
+- cargo package
+after_deploy:
+- cargo pages-publish
+- cargo publish

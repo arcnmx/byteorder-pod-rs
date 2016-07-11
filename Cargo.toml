@@ -1,0 +1,20 @@
+[package]
+name = "byteorder-pod"
+version = "0.0.1"
+authors = ["arcnmx"]
+
+description = "Endian-backed storage and memory mapping types."
+keywords = ["nue", "pod", "data", "encode", "endian"]
+
+documentation = "http://arcnmx.github.io/byteorder-pod-rs/byteorder-pod"
+repository = "https://github.com/arcnmx/byteorder-pod-rs"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+uninitialized = { version = "^0.0.2", optional = true }
+byteorder = "^0.5.3"
+pod = "^0.4.0"
+
+[features]
+default = ["uninitialized"]
