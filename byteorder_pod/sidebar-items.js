@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["aligned","Aligned type aliases"],["unaligned","Unaligned type aliases"]],"struct":[["EndianPrimitive","A POD container for a primitive that stores a value in the specified endianness in memory, and transforms on `get`/`set`"]],"trait":[["EndianConvert","Describes a value that can be converted to and from a specified byte order."]]});

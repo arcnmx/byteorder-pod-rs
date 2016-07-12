@@ -1,0 +1,1 @@
+initSidebarItems({"type":[["Be","A type alias for big endian primitives"],["Le","A type alias for little endian primitives"],["Native","A type alias for native endian primitives"]]});
