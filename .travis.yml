@@ -6,7 +6,6 @@ rust:
 sudo: false
 os:
 - linux
-- osx
 cache:
   directories:
   - "$HOME/.cargo"
