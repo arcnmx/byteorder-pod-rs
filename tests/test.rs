@@ -59,7 +59,7 @@ fn pod_encoding() {
 
 #[test]
 fn pod_slice() {
-    assert_eq!(sample(), *POD::from_bytes_ref(&POD_BYTES).unwrap())
+    assert_eq!(sample(), *POD::ref_from_bytes(&POD_BYTES).unwrap())
 }
 
 #[test]

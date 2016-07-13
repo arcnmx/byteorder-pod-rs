@@ -1,6 +1,6 @@
 [package]
 name = "byteorder-pod"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["arcnmx"]
 
 description = "Endian-backed storage and memory mapping types."
@@ -14,7 +14,7 @@ license = "MIT"
 [dependencies]
 uninitialized = { version = "^0.0.2", optional = true }
 byteorder = "^0.5.3"
-pod = "^0.4.0"
+pod = "^0.5.0"
 
 [features]
 default = ["uninitialized"]
